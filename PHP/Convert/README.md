@@ -1,3 +1,7 @@
+# Fork changes
+Forked to add a directory ./PSR-4 containing PSR-4 compatible classes which were extracted from documentConverterServices.php.
+Included Quick & Dirty php script which did the initial class extraction. 
+
 # Convert to PDF, and Watermark, using PHP
 The PHP sample provided in this section uses the *[Muhimbi PDF Converter Services](http://www.muhimbi.com/Products/PDF-Converter-Services/summary.aspx)* to convert (if needed) a file and apply PDF watermarks (a.k.a stamps). Additional sample code to convert, merge, watermark, secure and OCR files [can be found here](../).
 
