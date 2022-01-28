@@ -8,6 +8,8 @@ file_put_contents('documentConverterServices.php', $contents);
 require_once "documentConverterServices.php";
 
 $classes = DocumentConverterService::$classmap;
+$classes['DocumentConverterService'] = 'DocumentConverterService';
+
 $namespace = "<?php\n\nnamespace Muhimbi\\PDFConverterServices;\n\n";
 
 foreach ($classes as $className) {
