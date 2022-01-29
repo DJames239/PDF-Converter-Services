@@ -29,6 +29,11 @@ foreach ($classes as $className) {
     $offset = $class->getStartLine() - 1;
     $code = implode('', array_slice(file('documentConverterServices.php'), $offset, $class->getEndLine() - $offset));
 
+    // If classmap exists. Make sure to add namespace
+    if (strpos($code, '$classmap = array(') !== false) {
+        $code = str_replace("' => '", "' => '{$namespace}\\", $code);
+    }
+
     $dependencies = [];
     $hasDependencies = preg_match_all('/(?<=\@return).*?(?=\n)/', $code, $dependencies, PREG_SET_ORDER);
     if ($hasDependencies != false) {
