@@ -34,17 +34,5 @@ foreach ($classes as $className) {
         $code = str_replace("' => '", "' => '{$namespace}\\", $code);
     }
 
-    $dependencies = [];
-    $hasDependencies = preg_match_all('/(?<=\@return).*?(?=\n)/', $code, $dependencies, PREG_SET_ORDER);
-    if ($hasDependencies != false) {
-        $dependencies = array_merge(...array_values($dependencies));
-        $block = '';
-        foreach ($dependencies as $dependency) {
-            $dependency = trim($dependency);
-            $block .= "use {$namespace}\\{$dependency};\n";
-        }
-        $code = "{$block}\n{$code}";
-    }
-
     file_put_contents($file, "<?php\n\nnamespace {$namespace};\n\n{$code}");
 }
