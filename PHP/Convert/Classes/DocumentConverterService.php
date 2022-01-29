@@ -2,6 +2,15 @@
 
 namespace Muhimbi\PDFConverterServices;
 
+use Muhimbi\PDFConverterServices\ConvertResponse;
+use Muhimbi\PDFConverterServices\ApplyWatermarkResponse;
+use Muhimbi\PDFConverterServices\ApplySecurityResponse;
+use Muhimbi\PDFConverterServices\ProcessChangesResponse;
+use Muhimbi\PDFConverterServices\ProcessBatchResponse;
+use Muhimbi\PDFConverterServices\GetConfigurationResponse;
+use Muhimbi\PDFConverterServices\GetDiagnosticsResponse;
+use Muhimbi\PDFConverterServices\GetStatusResponse;
+
 class DocumentConverterService extends \SoapClient
 {
 

@@ -7,7 +7,7 @@ $documentConverterServices = file_get_contents('documentConverterServices.php');
 
 $classes = get_declared_classes();
 
-$namespace = "<?php\n\nnamespace Muhimbi\\PDFConverterServices;\n\n";
+$namespace = "Muhimbi\\PDFConverterServices";
 
 foreach ($classes as $className) {
     if (empty($className)) {
@@ -29,5 +29,17 @@ foreach ($classes as $className) {
     $offset = $class->getStartLine() - 1;
     $code = implode('', array_slice(file('documentConverterServices.php'), $offset, $class->getEndLine() - $offset));
 
-    file_put_contents($file, $namespace . $code);
+    $dependencies = [];
+    $hasDependencies = preg_match_all('/(?<=\@return).*?(?=\n)/', $code, $dependencies, PREG_SET_ORDER);
+    if ($hasDependencies != false) {
+        $dependencies = array_merge(...array_values($dependencies));
+        $block = '';
+        foreach ($dependencies as $dependency) {
+            $dependency = trim($dependency);
+            $block .= "use {$namespace}\\{$dependency};\n";
+        }
+        $code = "{$block}\n{$code}";
+    }
+
+    file_put_contents($file, "<?php\n\nnamespace {$namespace};\n\n{$code}");
 }
