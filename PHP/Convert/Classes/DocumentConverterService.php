@@ -10,7 +10,7 @@ class DocumentConverterService extends \SoapClient
    * @var array $classmap The defined classes
    * @access private
    */
-  public static $classmap = array(
+  private static $classmap = array(
     'ConverterSpecificSettings' => 'ConverterSpecificSettings',
     'ConverterSpecificSettings_WordProcessing' => 'ConverterSpecificSettings_WordProcessing',
     'ConverterSpecificSettings_Presentations' => 'ConverterSpecificSettings_Presentations',
